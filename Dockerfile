@@ -1,9 +1,5 @@
 FROM ubuntu:noble-20250415.1
 
-# Name of the Whisper model to be downloaded and used by this image
-# https://huggingface.co/ggerganov/whisper.cpp
-ARG model=base.en
-
 # Install required tools
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -43,6 +39,10 @@ ENV LIBRARY_PATH=${W}/build_go/src:${W}/build_go/ggml/src
 
 # only needed for darwin
 # ENV GGML_METAL_PATH_RESOURCES=${W}
+
+# Name of the Whisper model to be downloaded and used by this image
+# https://huggingface.co/ggerganov/whisper.cpp
+ARG model=base.en
 
 # Download Whisper model
 ENV MODEL_DIR=/usr/local/whisper_models
